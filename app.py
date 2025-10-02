@@ -7,6 +7,7 @@ import numpy as np
 import base64
 import io
 from PIL import Image
+import torch
 
 app = FastAPI(title="Pothole Detection API")
 
@@ -18,6 +19,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Fix PyTorch loading issue
+torch.serialization.add_safe_globals(["ultralytics.nn.tasks.SegmentationModel"])
 model = YOLO('best.pt')
 
 @app.post("/detect")

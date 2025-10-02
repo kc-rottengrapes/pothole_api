@@ -2,7 +2,7 @@ services:
   - type: web
     name: pothole-detection-api
     env: python
-    buildCommand: pip install -r requirements.txt
+    buildCommand: pip install -r requirements_cloud.txt
     startCommand: python app.py
     envVars:
       - key: PORT
